@@ -1,0 +1,26 @@
+{
+  "group": "com.polydes",
+  "id": "com.polydes.imgur",
+  "name": "Imgur Extension",
+  "description": "Upload toolset screenshots directly to Imgur.",
+  "tags": ["workflow"],
+  "type": "game",
+  "author": "Hectate",
+  "website": "https://www.polydes.com/repo/toolset/com.polydes.imgur",
+  "repository": "https://www.polydes.com/repo",
+  "target": "stencyl-4.2.0",
+  "version": "1.2.0",
+
+  "icon": "icon.png",
+
+  "toolset": {
+    "src": [
+      {"type": "java", "path": "src"}
+    ],
+    "dependencies": [
+      "platform:ch.qos.reload4j:reload4j"
+    ],
+    "mainClass": "com.polydes.imgur.ImgurExtension",
+    "internalVersion": "1"
+  }
+}
