@@ -2,16 +2,8 @@
   "versions":
   [
     {
-      "date": "10/02/2015",
-      "changes": "Initial Repository Version.",
-      "version": "1.0.0",
-      "dependencies": "toolset-com.polydes.common-1.0.0"
-    },
-    {
-      "date": "05/01/2017",
-      "changes": "Update for Stencyl 3.5.0.\nAvoid some exceptions if missing prefs.",
-      "version": "1.1.1",
-      "dependencies": "stencyl-3.5.0"
+      "version": "1.2.0",
+      "dependencies": "stencyl-4.2.0"
     }
   ]
 }
