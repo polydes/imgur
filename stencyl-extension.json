@@ -4,7 +4,7 @@
   "name": "Imgur Extension",
   "description": "Upload toolset screenshots directly to Imgur.",
   "tags": ["workflow"],
-  "type": "game",
+  "type": "normal",
   "author": "Hectate",
   "website": "https://www.polydes.com/repo/toolset/com.polydes.imgur",
   "repository": "https://www.polydes.com/repo",
