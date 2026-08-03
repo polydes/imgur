@@ -6,7 +6,7 @@
   "tags": ["workflow"],
   "type": "normal",
   "author": "Hectate",
-  "website": "https://www.polydes.com/repo/toolset/com.polydes.imgur",
+  "website": "https://www.polydes.com/repo/extensions/com.polydes.imgur",
   "repository": "https://www.polydes.com/repo",
   "target": "stencyl-4.2.0",
   "version": "1.2.0",
