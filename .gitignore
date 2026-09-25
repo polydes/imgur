@@ -1,4 +1,9 @@
 /build/
 /bin/
+/out/
+/.idea/
+/.gradle/
 /.settings/
+/.classpath
+/.project
 /key.txt
