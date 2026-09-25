@@ -38,13 +38,14 @@ import org.apache.log4j.Logger;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
+import stencyl.app.ext.OptionsAddon;
+import stencyl.app.ext.OptionsPanel;
+import stencyl.core.ext.app.AppExtension;
+import stencyl.core.io.FileHelper;
+import stencyl.core.lib.IProject;
+import stencyl.sw.app.ext.ExtensionCP;
 
-import stencyl.core.lib.Game;
-import stencyl.sw.ext.BaseExtension;
-import stencyl.sw.ext.OptionsPanel;
-import stencyl.sw.util.FileHelper;
-
-public class ImgurExtension extends BaseExtension
+public class ImgurExtension extends AppExtension
 {
 	private static final Logger log = Logger.getLogger(ImgurExtension.class);
 
@@ -69,99 +70,39 @@ public class ImgurExtension extends BaseExtension
 	// provided by the user during the auth process
 //	private static String userImgurPIN;
 
-	/*
-	 * Happens when StencylWorks launches.
-	 * 
-	 * Avoid doing anything time-intensive in here, or it will slow down launch.
-	 */
+
 	@Override
-	public void onStartup()
-	{
-		super.onStartup();
+	public void onLoad() {
+		super.onLoad();
 
 		log.info("ImgurExtension : Started StencylWorks");
-		
-		isInMenu = true;
-		menuName = "Imgur Extension";
-		
-		isInGameCenter = false;
-//		gameCenterName = "Imgur";
-		
+
+		getAddons().setAddon(ExtensionCP.EXTENSION_CP_OPTIONS_ADDONS,
+				(OptionsAddon) ImgurExtension.this::getOptions);
+
 		IMGUR_REFRESH_TOKEN = readStringProp("refresh", null);
 		IMGUR_ACCESS_TOKEN = readStringProp("access", null);
 		didUserAuth = readBoolProp("authed", false);
 		expirationTime = readLongProp("expiration", 0L);
 	}
 
-	/*
-	 * Happens when the extension is told to display.
-	 * 
-	 * May happen multiple times during the course of the app.
-	 * 
-	 * A good way to handle this is to make your extension a singleton.
-	 */
 	@Override
-	public void onActivate()
-	{
-		log.info("ImgurExtension : Activated");
+	public void onGameSave(IProject project) {
+
 	}
 
 	@Override
-	public JPanel onGameCenterActivate()
-	{
-		return onOptions();
+	public void onGameOpened(IProject project) {
+
 	}
 
-	/*
-	 * Happens when StencylWorks closes.
-	 * 
-	 * Usually used to save things out.
-	 */
 	@Override
-	public void onDestroy()
-	{
-		log.info("ImgurExtension : Destroyed");
+	public void onGameClosed(IProject project) {
+
 	}
 
-	/*
-	 * Happens when a game is saved.
-	 */
-	@Override
-	public void onGameSave(Game game)
+	public OptionsPanel getOptions()
 	{
-		log.info("ImgurExtension : Saved");
-	}
-
-	/*
-	 * Happens when a game is opened.
-	 */
-	@Override
-	public void onGameOpened(Game game)
-	{
-		log.info("ImgurExtension : Opened");
-	}
-
-	/*
-	 * Happens when a game is closed.
-	 */
-	@Override
-	public void onGameClosed(Game game)
-	{
-		super.onGameClosed(game);
-
-		log.info("ImgurExtension : Closed");
-	}
-
-	/*
-	 * Happens when the user requests the Options dialog for your extension.
-	 * 
-	 * You need to provide the form. We wrap it in a dialog.
-	 */
-	@Override
-	public OptionsPanel onOptions()
-	{
-		log.info("Imgur Extension: Options");
-
 		return new OptionsPanel()
 		{
 //			JTextField text;
@@ -559,26 +500,6 @@ public class ImgurExtension extends BaseExtension
 		}
 		else
 			return -1;
-	}
-
-	/*
-	 * Happens when the extension is first installed.
-	 */
-	@Override
-	public void onInstall()
-	{
-		log.info("ImgurExtension : Install");
-	}
-
-	/*
-	 * Happens when the extension is uninstalled.
-	 * 
-	 * Clean up files.
-	 */
-	@Override
-	public void onUninstall()
-	{
-		log.info("ImgurExtension : Uninstall");
 	}
 
 	class saveFrame extends JFrame implements ActionListener
