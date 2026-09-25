@@ -141,11 +141,15 @@ public class ImgurExtension extends AppExtension
 					log.info("Forming URL for Auth failed: " + e1.getMessage());
 				}
 				startForm();
+				if(IMGUR_CLIENT_ID.equals("notarealvalue") || IMGUR_CLIENT_SECRET.equals("alsonotarealvalue"))
+				{
+					addHeader("NOTE: THIS EXTENSION IS A TEMPLATE.");
+					addHeader("PLEASE ADD OAUTH CLIENT KEYS IN THE SOURCE CODE.");
+				}
 //				log.info("Building Options Panel");
 				/*** AUTHORIZATION header of Options Panel ***/
 				addHeader("Authorization");
 				JButton authButton = new JButton("Open Browser");
-				authButton.setBackground(null);
 				authButton.setOpaque(false);
 				authButton.setActionCommand("authorize");
 				authButton.addActionListener(new ActionListener()
@@ -166,7 +170,6 @@ public class ImgurExtension extends AppExtension
 				pinPanel = new JPanel();
 				pinPanel.setLayout(new GridLayout(1, 0));
 				JButton pasteButton = new JButton("Paste from Clipboard");
-				pasteButton.setBackground(null);
 				pasteButton.setOpaque(false);
 				pasteButton.setActionCommand("paste");
 				pasteButton.addActionListener(new ActionListener()
@@ -183,7 +186,6 @@ public class ImgurExtension extends AppExtension
 					}
 				});
 				JButton pinButton = new JButton("Submit PIN");
-				pinButton.setBackground(null);
 				pinButton.setOpaque(false);
 				pinButton.setActionCommand("pinsubmit");
 				pinButton.addActionListener(new ActionListener()
@@ -215,11 +217,9 @@ public class ImgurExtension extends AppExtension
 				});
 				pinPanel.add(pasteButton);
 				pinPanel.add(pinButton);
-				pinPanel.setBackground(null);
 				pinPanel.setOpaque(false);
 				addGenericRow("Use PIN to finalize authorization:", pinPanel);
 				status = new JLabel("Authorization credentials acquired: " + didUserAuth.toString());
-				status.setBackground(null);
 				if (didUserAuth && (IMGUR_ACCESS_TOKEN != null) && (IMGUR_REFRESH_TOKEN != null))
 				{
 					status.setForeground(Color.green);
@@ -233,7 +233,6 @@ public class ImgurExtension extends AppExtension
 				status.setOpaque(false);
 				addGenericRow("", status);
 				JButton deauthButton = new JButton("Deauthorize");
-				deauthButton.setBackground(null);
 				deauthButton.setOpaque(false);
 				deauthButton.setActionCommand("deauth");
 				deauthButton.addActionListener(new ActionListener()
@@ -257,7 +256,6 @@ public class ImgurExtension extends AppExtension
 				});
 				addGenericRow("Delete saved authorization information", deauthButton);
 				JButton printAuthButton = new JButton("Print");
-				printAuthButton.setBackground(null);
 				printAuthButton.setOpaque(false);
 				printAuthButton.setActionCommand("printauth");
 				printAuthButton.addActionListener(new ActionListener()
@@ -280,7 +278,6 @@ public class ImgurExtension extends AppExtension
 				addHeader("Options");
 				// text = addTextfield("Name:");
 				check = addCheckbox("Save Image to Disk?:");
-				check.setBackground(null);
 				// dropdown = addDropdown("Where are you from?", new String[]
 				// {"Americas", "Europe", "Asia", "Other"});
 
